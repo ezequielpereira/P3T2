@@ -1,0 +1,7 @@
+**/*.o
+**/*.sal
+**/*.diff
+**/*~
+**/*vgcore*
+principal
+**/*.tar.gz

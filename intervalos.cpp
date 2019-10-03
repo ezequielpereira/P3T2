@@ -51,6 +51,8 @@ static void ordenar(intervalo_t *intervalos, nat *pos, nat n) {
    El tiempo de ejecucion en peor caso es O(n*log(n)).
 */
 bool *max_cantidad(intervalo_t *intervalos, nat n) {
+  if (n == 0) return new bool[0];
+
   nat *pos = new nat[n];
   bool *res = new bool[n];
   for (nat i = 0 ; i < n ; i++) {

@@ -25,6 +25,12 @@ static void ordenar(intervalo_t *intervalos, nat *pos, nat n) {
     if (intervalos[pos1[count1]].fin < intervalos[pos2[count2]].fin) {
       pos[count1 + count2] = pos1[count1];
       count1++;
+    } else if (intervalos[pos1[count1]].fin > intervalos[pos2[count2]].fin) {
+      pos[count1 + count2] = pos2[count2];
+      count2++;
+    } else if (intervalos[pos1[count1]].inicio < intervalos[pos2[count2]].inicio) {
+      pos[count1 + count2] = pos1[count1];
+      count1++;
     } else {
       pos[count1 + count2] = pos2[count2];
       count2++;
@@ -63,13 +69,12 @@ bool *max_cantidad(intervalo_t *intervalos, nat n) {
   ordenar(intervalos, pos, n);
 
   res[pos[0]] = true;
-  nat count = 1, last = 0;
-  while (count < n) {
+  nat last = 0;
+  for (nat count = 1; count < n ; count++) {
     if (intervalos[pos[last]].fin <= intervalos[pos[count]].inicio) {
       res[pos[count]] = true;
       last = count;
     }
-    count++;
   }
 
   delete[] pos;
